@@ -1,0 +1,28 @@
+ <MudTh Style="padding: 3px;font-size: 14px;font-weight: 600;width:80px">SL NO</MudTh>
+ <MudTh style="padding: 3px;font-size: 14px;font-weight: 600;width:200px">Customer Code</MudTh>
+ <MudTh style="padding: 3px;font-size: 14px;font-weight: 600;width:450px">Customer Name</MudTh>
+ <MudTh style="padding: 3px;font-size: 14px;font-weight: 600;width:850px">Customer Address</MudTh>
+ <MudTh>
+
+
+    [Parameter] public bool isViewMode { get; set; }
+
+
+  @if (isViewMode)
+  {
+      <div class="col-md-3">
+
+          <MudTextField @bind-Value="@customer.Id"
+                        ToStringFunc="@GetTradersName" Label="Customer Id" Variant="Variant.Outlined" ReadOnly="isViewMode" Margin="Margin.Dense" />
+      </div>
+
+  }
+
+private string GetTradersName(int? Id)
+{
+    var item = Traders.FirstOrDefault(i => i.TradersId == Id);
+    return item?.TradersName ?? string.Empty;
+}
+
+
+
